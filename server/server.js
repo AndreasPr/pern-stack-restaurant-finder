@@ -1,9 +1,11 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const db = require("./db");
 const morgan = require("morgan");
 const app = express();
 
+app.use(cors());
 app.use(express.json()); //Take the JSON sent by the client and convert it to a standard JavaScript Object.
 
 //Middleware Morgan
