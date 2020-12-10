@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 const RestaurantList = (props) => {
 
     const {restaurants, setRestaurants} = useContext(RestaurantsContext);
+    let history = useHistory(); //History of the browser
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +31,10 @@ const RestaurantList = (props) => {
         }
     };
 
+    const handleUpdate = (id) => {
+        history.push(`/restaurants/${id}/update`);
+    };
+
     return (
         <div className="list-group">
             <table className="table table-hover table-dark">
@@ -51,7 +56,7 @@ const RestaurantList = (props) => {
                                 <td>{restaurant.location}</td>
                                 <td>{"$".repeat(restaurant.price_range)}</td>
                                 <td>Rating</td>
-                                <td><button className="btn btn-warning">Update</button></td>
+                                <td><button onClick={() => handleUpdate(restaurant.id)} className="btn btn-warning">Update</button></td>
                                 <td><button onClick={() => handleDelete(restaurant.id)} className="btn btn-danger">Delete</button></td>
                             </tr>
                         );  
